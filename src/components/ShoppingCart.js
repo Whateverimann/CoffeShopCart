@@ -1,74 +1,78 @@
-import React, {Component}from "react";
-import { Row, Col } from "antd";
+import React, { Component } from "react";
+import "./ShoppingCart.css";
+import { Row, Col, Table, Button, InputNumber } from "antd";
+
+const { Column } = Table;
 
 class ShoppingCart extends Component {
   state = {
-    products: [
-      { key: 1, name: "Barista Espresso 0,5kg", amount: 0, price: 38.99, picture: "" },
-      {
-        key: 2,
-        name: "Barista Caffe Crema 0,5kg",
-        amount: 0,
-        price: 40.99,
-        picture: ""
-      },
-      {
-        key: 3,
-        name: "Privat Kaffe African Blue 0,5kg",
-        amount: 0,
-        price: 44.99,
-        picture: ""
-      },
-      {
-        key: 4,
-        name: "Espresso Milano Style 0,5kg",
-        amount: 0,
-        price: 39.99,
-        picture: ""
-      },
-      {
-        key: 5,
-        name: "Espresso Sicilia Style 0,5kg",
-        amount: 0,
-        price: 41.99,
-        picture: ""
-      }
-    ]
+    products: []
   };
 
-const columns = [
-  {
-    title: 'Picture',
-    dataIndex: 'picture',
-    key: 'picture',
-  },
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Amount',
-    dataIndex: 'amount',
-    key: 'amount',
-  },
-  {
-    title: 'Price',
-    dataIndex: 'price',
-    key: 'price',
-  },
-];
+  handleAddProduct = () => {
+    const key = Math.floor(Math.random() * this.props.data.length);
+    const product = this.props.data.find(product => product.key === key);
+    console.log(product);
+    const products = [...this.state.products];
+
+    // miejsce na warunek?!?!?!??!?!?!??!?!
+
+    products.push(product);
+    this.setState({
+      products
+    });
+  };
+
+  handleReset = () => {
+    this.setState({
+      products: []
+    });
+  };
 
   render() {
     return (
       <div>
         <Row>
-          <Col xs={24} md={12}>
+          <Col xs={24} md={16}>
             <div>
-            
+              <Table pagination={false} dataSource={this.state.products}>
+                <Column
+                  title=""
+                  dataIndex="picture"
+                  key="picture"
+                  render={picture => <img alt="kawa" src={picture} />}
+                />
+                <Column title="Product" dataIndex="name" key="product" />
+                <Column
+                  title="Amount"
+                  dataIndex="amount"
+                  key={this.state.products.key}
+                  render={() => (
+                    <InputNumber
+                      min={1}
+                      max={10}
+                      defaultValue={1}
+                      onChange={this.changeAmount}
+                    />
+                  )}
+                />
+                <Column title="Price" dataIndex="totalPrice" key="price" />
+                <Column
+                  title=""
+                  key="action"
+                  render={(text, record) => (
+                    <span>
+                      <button>X</button>
+                    </span>
+                  )}
+                />
+              </Table>
+
+              <Button onClick={this.handleAddProduct}>Add Product</Button>
+              <Button onClick={this.handleReset}>Reset</Button>
             </div>
           </Col>
-          <Col xs={24} md={12}>
+          <Col xs={24} md={8}>
             col-12
           </Col>
         </Row>

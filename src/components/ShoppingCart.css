@@ -1,0 +1,9 @@
+@import "~antd/dist/antd.css";
+
+img {
+  height: 50px;
+  padding: 0;
+}
+.ant-table-small {
+  border: none;
+}

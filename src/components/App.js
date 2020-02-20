@@ -4,13 +4,61 @@ import ShoppingCart from "./ShoppingCart";
 import Adress from "./Adress";
 import DeliveryPayment from "./DeliveryPayment";
 import { Steps, Button, message } from "antd";
+import picture1 from "../images/baristaespresso.jpg";
+import picture2 from "../images/baristacaffecrema.jpg";
+import picture3 from "../images/privatkaffeeafricanblue.jpg";
+import picture4 from "../images/espressomilanostyle.jpg";
+import picture5 from "../images/espressosiciliastyle.jpg";
 
 const { Step } = Steps;
+
+const data = [
+      {
+        key: 0,
+        name: "Barista Espresso 0,5kg",
+        amount: 1,
+        price: 38.99,
+        totalPrice: 0,
+        picture: picture1
+      },
+      {
+        key: 1,
+        name: "Barista Caffe Crema 0,5kg",
+        amount: 1,
+        price: 40.99,
+        totalPrice: 0,
+        picture: picture2
+      },
+      {
+        key: 2,
+        name: "Privat Kaffe African Blue 0,5kg",
+        amount: 1,
+        price: 44.99,
+        totalPrice: 0,
+        picture: picture3
+      },
+      {
+        key: 3,
+        name: "Espresso Milano Style 0,5kg",
+        amount: 1,
+        price: 39.99,
+        totalPrice: 0,
+        picture: picture4
+      },
+      {
+        key: 4,
+        name: "Espresso Sicilia Style 0,5kg",
+        amount: 1,
+        price: 41.99,
+        totalPrice: 0,
+        picture: picture5
+      }
+    ]
 
 const steps = [
   {
     title: "Shopping cart",
-    content: <ShoppingCart />
+    content: <ShoppingCart data={data} />
   },
   {
     title: "Adress",
