@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./ShoppingCart.css";
+import CartSum from "./CartSum";
 import { Row, Col, Table, Button, InputNumber, message, Icon } from "antd";
 import picture1 from "../images/baristaespresso.jpg";
 import picture2 from "../images/baristacaffecrema.jpg";
@@ -18,7 +19,7 @@ class ShoppingCart extends Component {
         name: "Barista Espresso 0,5kg",
         amount: 1,
         price: 38.99,
-        totalPrice: 0,
+        totalPrice: 38.99,
         picture: picture1
       },
       {
@@ -26,7 +27,7 @@ class ShoppingCart extends Component {
         name: "Barista Caffe Crema 0,5kg",
         amount: 1,
         price: 40.99,
-        totalPrice: 0,
+        totalPrice: 40.99,
         picture: picture2
       },
       {
@@ -34,7 +35,7 @@ class ShoppingCart extends Component {
         name: "Privat Kaffe African Blue 0,5kg",
         amount: 1,
         price: 44.99,
-        totalPrice: 0,
+        totalPrice: 44.99,
         picture: picture3
       },
       {
@@ -42,7 +43,7 @@ class ShoppingCart extends Component {
         name: "Espresso Milano Style 0,5kg",
         amount: 1,
         price: 39.99,
-        totalPrice: 0,
+        totalPrice: 39.99,
         picture: picture4
       },
       {
@@ -50,7 +51,7 @@ class ShoppingCart extends Component {
         name: "Espresso Sicilia Style 0,5kg",
         amount: 1,
         price: 41.99,
-        totalPrice: 0,
+        totalPrice: 41.99,
         picture: picture5
       }
     ]
@@ -80,11 +81,11 @@ class ShoppingCart extends Component {
 
   changeAmount = (record, value) => {
     const products = [...this.state.products];
-    console.log(value);
-    console.log(record);
+
     products.forEach(product => {
       if (product.key === record.key) {
         product.amount = value;
+        product.totalPrice = (product.amount * product.price).toFixed(2);
       }
     });
     this.setState({
@@ -104,56 +105,56 @@ class ShoppingCart extends Component {
     this.setState({
       products: [],
       data: [
-      {
-        key: 0,
-        name: "Barista Espresso 0,5kg",
-        amount: 1,
-        price: 38.99,
-        totalPrice: 0,
-        picture: picture1
-      },
-      {
-        key: 1,
-        name: "Barista Caffe Crema 0,5kg",
-        amount: 1,
-        price: 40.99,
-        totalPrice: 0,
-        picture: picture2
-      },
-      {
-        key: 2,
-        name: "Privat Kaffe African Blue 0,5kg",
-        amount: 1,
-        price: 44.99,
-        totalPrice: 0,
-        picture: picture3
-      },
-      {
-        key: 3,
-        name: "Espresso Milano Style 0,5kg",
-        amount: 1,
-        price: 39.99,
-        totalPrice: 0,
-        picture: picture4
-      },
-      {
-        key: 4,
-        name: "Espresso Sicilia Style 0,5kg",
-        amount: 1,
-        price: 41.99,
-        totalPrice: 0,
-        picture: picture5
-      }
-    ]
+        {
+          key: 0,
+          name: "Barista Espresso 0,5kg",
+          amount: 1,
+          price: 38.99,
+          totalPrice: 38.99,
+          picture: picture1
+        },
+        {
+          key: 1,
+          name: "Barista Caffe Crema 0,5kg",
+          amount: 1,
+          price: 40.99,
+          totalPrice: 40.99,
+          picture: picture2
+        },
+        {
+          key: 2,
+          name: "Privat Kaffe African Blue 0,5kg",
+          amount: 1,
+          price: 44.99,
+          totalPrice: 44.99,
+          picture: picture3
+        },
+        {
+          key: 3,
+          name: "Espresso Milano Style 0,5kg",
+          amount: 1,
+          price: 39.99,
+          totalPrice: 39.99,
+          picture: picture4
+        },
+        {
+          key: 4,
+          name: "Espresso Sicilia Style 0,5kg",
+          amount: 1,
+          price: 41.99,
+          totalPrice: 41.99,
+          picture: picture5
+        }
+      ]
     });
   };
 
   render() {
     return (
-      <div>
+      <div className="content">
         <Row>
           <Col xs={24} md={16}>
-            <div>
+            <div className="products-list">
               <Table pagination={false} dataSource={this.state.products}>
                 <Column
                   title=""
@@ -186,13 +187,18 @@ class ShoppingCart extends Component {
                   )}
                 />
               </Table>
-
-              <Button onClick={this.handleAddProduct}>Add Product</Button>
-              <Button onClick={this.handleReset}>Reset</Button>
+              <div className="handle-products-buttons">
+                <Button className="add-product" onClick={this.handleAddProduct}>
+                  Add Product
+                </Button>
+                <Button className="reset-products" onClick={this.handleReset}>
+                  Reset Cart
+                </Button>
+              </div>
             </div>
           </Col>
           <Col xs={24} md={8}>
-            col-12
+            <CartSum />
           </Col>
         </Row>
       </div>

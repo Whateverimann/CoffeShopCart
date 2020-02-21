@@ -1,9 +1,87 @@
 @import "~antd/dist/antd.css";
 
+.content {
+  min-height: 550px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------------------------table----------------------- */
+
 img {
   height: 50px;
   padding: 0;
 }
 .ant-table-small {
   border: none;
+}
+
+.ant-row {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+}
+.ant-table-thead > tr{
+  font-size: 18px;
+  border-bottom: 2px solid black;
+  }
+
+.ant-table-thead > tr > th {
+  background: white;
+}
+
+.ant-table-placeholder{
+  border: none;
+}
+
+.products-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+/* --------------------------buttons---------------------- */
+.handle-products-buttons {
+  display: flex;
+  padding: 20px;
+}
+.add-product {
+  margin: 10px;
+  color: black;
+  border-bottom: 4px solid #da8027;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: none;
+  font-weight: 500;
+}
+.add-product:hover,
+.add-product:focus{
+  color: #da8027;
+  border-bottom: 4px solid #da8027;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: none;
+}
+
+.reset-products {
+  margin: 10px;
+  color: black;
+  border-bottom: 4px solid #da8027;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: none;
+  font-weight: 500;
+}
+.reset-products:hover,
+.reset-products:focus{
+  color: #da8027;
+  border-bottom: 4px solid #da8027;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: none;
 }

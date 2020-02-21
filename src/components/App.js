@@ -10,7 +10,7 @@ const { Step } = Steps;
 
 const steps = [
   {
-    title: "Shopping cart",
+    title: "Shopping Cart",
     content: <ShoppingCart />
   },
   {
@@ -18,7 +18,7 @@ const steps = [
     content: <Adress />
   },
   {
-    title: "Delivery & payment",
+    title: "Delivery & Payment",
     content: <DeliveryPayment />
   }
 ];
