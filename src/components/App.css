@@ -17,8 +17,9 @@
 .steps-action {
   margin-top: 24px;
   display: flex;
-  flex-direction: column;
-  }
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
 
 /* ----------------------------buttons-------------------------------- */
 .ant-btn {
@@ -32,10 +33,8 @@
   color: white;
 }
 .previous-button {
-  align-self: flex-start;
   height: 50px;
   margin-right: 10px;
-  margin-left: 0;
   font-size: 20px;
   color: black;
   border-bottom: 4px solid #da8027;
@@ -55,7 +54,6 @@
   border-radius: none;
 }
 .next-button {
-  align-self: flex-end;
   height: 50px;
   width: 120px;
   font-size: 20px;
