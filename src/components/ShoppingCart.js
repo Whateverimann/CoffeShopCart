@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./ShoppingCart.css";
-import { Row, Col, Table, Button, InputNumber, message } from "antd";
+import { Row, Col, Table, Button, InputNumber, message, Icon } from "antd";
 import picture1 from "../images/baristaespresso.jpg";
 import picture2 from "../images/baristacaffecrema.jpg";
 import picture3 from "../images/privatkaffeeafricanblue.jpg";
@@ -65,20 +65,11 @@ class ShoppingCart extends Component {
     let data = [...this.state.data];
 
     if (products.length < 5) {
-      const key = Math.floor(Math.random() * data.length);
-      const product = data.find(product => product.key === key);
-      
-      const hasMatch = Boolean(
-        products.find(p => {
-          return p.key === key;
-        })
-      );
-      //   console.log(hasMatch);
-      if (!hasMatch) {
-        products.push(product);
-      } else return null;
+      const index = Math.floor(Math.random() * data.length);
+      const product = data[index];
 
-    //   data.splice(key, 1);
+      data = data.filter(p => p.key !== product.key);
+      products.push(product);
 
       this.setState({
         products,
@@ -87,9 +78,73 @@ class ShoppingCart extends Component {
     } else this.handleWarning();
   };
 
+  changeAmount = (record, value) => {
+    const products = [...this.state.products];
+    console.log(value);
+    console.log(record);
+    products.forEach(product => {
+      if (product.key === record.key) {
+        product.amount = value;
+      }
+    });
+    this.setState({
+      products
+    });
+  };
+
+  deleteRow = record => {
+    let products = [...this.state.products];
+    products = products.filter(product => product.key !== record.key);
+    this.setState({
+      products
+    });
+  };
+
   handleReset = () => {
     this.setState({
-      products: []
+      products: [],
+      data: [
+      {
+        key: 0,
+        name: "Barista Espresso 0,5kg",
+        amount: 1,
+        price: 38.99,
+        totalPrice: 0,
+        picture: picture1
+      },
+      {
+        key: 1,
+        name: "Barista Caffe Crema 0,5kg",
+        amount: 1,
+        price: 40.99,
+        totalPrice: 0,
+        picture: picture2
+      },
+      {
+        key: 2,
+        name: "Privat Kaffe African Blue 0,5kg",
+        amount: 1,
+        price: 44.99,
+        totalPrice: 0,
+        picture: picture3
+      },
+      {
+        key: 3,
+        name: "Espresso Milano Style 0,5kg",
+        amount: 1,
+        price: 39.99,
+        totalPrice: 0,
+        picture: picture4
+      },
+      {
+        key: 4,
+        name: "Espresso Sicilia Style 0,5kg",
+        amount: 1,
+        price: 41.99,
+        totalPrice: 0,
+        picture: picture5
+      }
+    ]
     });
   };
 
@@ -110,25 +165,24 @@ class ShoppingCart extends Component {
                 <Column
                   title="Amount"
                   dataIndex="amount"
-                  key={this.state.products.key}
-                  render={() => (
+                  key="amount"
+                  render={(text, record) => (
                     <InputNumber
                       min={1}
                       max={10}
                       defaultValue={1}
-                      onChange={this.changeAmount}
-                      //onChange={(event) => this.changeAmount(event, this.state.products.key)}
+                      onChange={value => this.changeAmount(record, value)}
                     />
                   )}
                 />
                 <Column title="Price" dataIndex="totalPrice" key="price" />
                 <Column
                   title=""
-                  key="action"
-                  render={(text, record) => (
-                    <span>
-                      <button>X</button>
-                    </span>
+                  key="delete"
+                  render={record => (
+                    <Button onClick={() => this.deleteRow(record)}>
+                      <Icon type="close" />
+                    </Button>
                   )}
                 />
               </Table>
