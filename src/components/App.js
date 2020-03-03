@@ -5,7 +5,6 @@ import Adress from "./Adress";
 import DeliveryPayment from "./DeliveryPayment";
 import { Steps, Button, message } from "antd";
 
-
 const { Step } = Steps;
 
 const steps = [
@@ -50,18 +49,13 @@ class App extends Component {
         <div className="steps-content">{steps[current].content}</div>
         <div className="steps-action">
           {current < steps.length - 1 && (
-            <Button
-              className="next-button"
-              type="primary"
-              onClick={() => this.next()}
-            >
+            <Button className="next-button" onClick={() => this.next()}>
               Next
             </Button>
           )}
           {current === steps.length - 1 && (
             <Button
               className="next-button"
-              type="primary"
               onClick={() => message.success("Processing complete!")}
             >
               Done

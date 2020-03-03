@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./ShoppingCart.css";
 import CartSum from "./CartSum";
 import { Row, Col, Table, Button, InputNumber, message, Icon } from "antd";
+import { ReloadOutlined } from "@ant-design/icons";
 import picture1 from "../images/baristaespresso.jpg";
 import picture2 from "../images/baristacaffecrema.jpg";
 import picture3 from "../images/privatkaffeeafricanblue.jpg";
@@ -13,6 +14,7 @@ const { Column } = Table;
 class ShoppingCart extends Component {
   state = {
     products: [],
+    cartTotal: "",
     data: [
       {
         key: 0,
@@ -86,6 +88,7 @@ class ShoppingCart extends Component {
       if (product.key === record.key) {
         product.amount = value;
         product.totalPrice = (product.amount * product.price).toFixed(2);
+        product.totalPrice = product.totalPrice * 1;
       }
     });
     this.setState({
@@ -95,15 +98,22 @@ class ShoppingCart extends Component {
 
   deleteRow = record => {
     let products = [...this.state.products];
+    let data = [...this.state.data];
+
+    const product = products.find(product => product.key === record.key);
     products = products.filter(product => product.key !== record.key);
+
+    data = data.concat(product);
     this.setState({
-      products
+      products,
+      data
     });
   };
 
   handleReset = () => {
     this.setState({
       products: [],
+      cartTotal: "",
       data: [
         {
           key: 0,
@@ -149,56 +159,91 @@ class ShoppingCart extends Component {
     });
   };
 
+  handleCartTotal = () => {
+    const products = [...this.state.products];
+    let total = 0;
+
+    for (let i = 0; i < products.length; i++) {
+      total += products[i].totalPrice;
+    }
+    total = total.toFixed(2);
+
+    this.setState({
+      cartTotal: total
+    });
+  };
+
   render() {
     return (
       <div className="content">
         <Row>
+          <div className="products-list">
+            <Table
+              placeholder={"Add Product!"}
+              pagination={false}
+              dataSource={this.state.products}
+            >
+              <Column
+                title=""
+                dataIndex="picture"
+                key="picture"
+                render={picture => <img alt="kawa" src={picture} />}
+              />
+              <Column title="Product" dataIndex="name" key="product" />
+              <Column
+                title="Quantity"
+                dataIndex="amount"
+                key="amount"
+                render={(text, record) => (
+                  <InputNumber
+                    size="small"
+                    min={1}
+                    max={10}
+                    defaultValue={1}
+                    onChange={value => this.changeAmount(record, value)}
+                  />
+                )}
+              />
+              <Column
+                className="total-price"
+                title="Total"
+                dataIndex="totalPrice"
+                key="price"
+              />
+              <Column
+                title=""
+                key="delete"
+                render={record => (
+                  <Button
+                    className={"delete-row-button"}
+                    onClick={() => this.deleteRow(record)}
+                  >
+                    <Icon type="close" />
+                  </Button>
+                )}
+              />
+            </Table>
+          </div>
+        </Row>
+        <Row className="buttons-row">
           <Col xs={24} md={16}>
-            <div className="products-list">
-              <Table pagination={false} dataSource={this.state.products}>
-                <Column
-                  title=""
-                  dataIndex="picture"
-                  key="picture"
-                  render={picture => <img alt="kawa" src={picture} />}
-                />
-                <Column title="Product" dataIndex="name" key="product" />
-                <Column
-                  title="Amount"
-                  dataIndex="amount"
-                  key="amount"
-                  render={(text, record) => (
-                    <InputNumber
-                      min={1}
-                      max={10}
-                      defaultValue={1}
-                      onChange={value => this.changeAmount(record, value)}
-                    />
-                  )}
-                />
-                <Column title="Price" dataIndex="totalPrice" key="price" />
-                <Column
-                  title=""
-                  key="delete"
-                  render={record => (
-                    <Button onClick={() => this.deleteRow(record)}>
-                      <Icon type="close" />
-                    </Button>
-                  )}
-                />
-              </Table>
-              <div className="handle-products-buttons">
-                <Button className="add-product" onClick={this.handleAddProduct}>
-                  Add Product
-                </Button>
-                <Button className="reset-products" onClick={this.handleReset}>
-                  Reset Cart
-                </Button>
-              </div>
+            <div className="handle-products-buttons">
+              <Button className="add-product" onClick={this.handleAddProduct}>
+                Add Product
+              </Button>
+              <Button className="reset-products" onClick={this.handleReset}>
+                Reset Cart
+              </Button>
+              <Button
+                className="update-cart-button"
+                onClick={this.handleCartTotal}
+              >
+                Update Cart Total <ReloadOutlined />
+              </Button>
             </div>
           </Col>
           <Col xs={24} md={8}>
-            <CartSum />
+            <CartSum cartTotal={this.state.cartTotal} />
           </Col>
         </Row>
       </div>

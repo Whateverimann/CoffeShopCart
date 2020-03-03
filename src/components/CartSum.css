@@ -1,0 +1,9 @@
+.total-cart-container {
+  display: flex;
+  padding: 20px;
+  height: 100%;
+  align-items: flex-end;
+}
+.cart-total{
+    font-weight: 700;
+}

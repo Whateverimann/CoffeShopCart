@@ -2,15 +2,26 @@
 
 .form-container {
   margin-top: 50px;
-  width: 1000px;
+  width: 900px;
   padding: 10px;
 }
+
+.ant-steps {
+  margin-left: 80px;
+  margin-bottom: 30px;
+}
+@media (min-width: 576px) {
+  .ant-steps {
+    margin: auto;
+  }
+}
+
 .steps-content {
+  padding: 5px;
   margin-top: 16px;
-  border: 4px solid #da8027;
+  border: 2px solid #eb9e66;
   border-radius: 6px;
-  background-color: white;
-  min-height: 200px;
+  background-color: #ffffff;
   text-align: center;
 }
 
@@ -28,16 +39,16 @@
 }
 .ant-btn-primary:hover,
 .ant-btn-primary:focus {
-  background-color: #da8027;
-  border-color: #da8027;
-  color: white;
+  background-color: #eb9e66;
+  border-color: #eb9e66;
+  color: #fff;
 }
 .previous-button {
   height: 50px;
   margin-right: 10px;
   font-size: 20px;
-  color: black;
-  border-bottom: 4px solid #da8027;
+  color: #000;
+  border-bottom: 4px solid #eb9e66;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -46,8 +57,8 @@
 }
 .previous-button:hover,
 .previous-button:focus {
-  color: #da8027;
-  border-bottom: 4px solid #da8027;
+  color: #eb9e66;
+  border-bottom: 4px solid #eb9e66;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -57,12 +68,21 @@
   height: 50px;
   width: 120px;
   font-size: 20px;
-  border: 4px solid #da8027;
+  border: 4px solid #eb9e66;
   font-weight: 500;
-  background-color: white;
-  border-color: #da8027;
-  color: #da8027;
+  background-color: #fff;
+  border-color: #eb9e66;
+  color: #eb9e66;
+  transition: all 0.5s;
 }
+.next-button:hover,
+.next-button:focus{
+  background-color: #eb9e66;
+  border-color:#eb9e66;
+  color:#fff;
+  
+}
+
 /* ----------------------------stepper-------------------------- */
 .ant-steps-item-title {
   font-size: 14px;
@@ -70,26 +90,26 @@
 }
 
 .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
-  color: #da8027;
+  color: #eb9e66;
 }
 .ant-steps-item-icon > .ant-steps-icon {
-  color: #da8027;
+  color: #eb9e66;
 }
 .ant-steps-item-finish .ant-steps-item-icon {
-  border-color: #da8027;
+  border-color: #eb9e66;
 }
 .ant-steps-item-process .ant-steps-item-icon {
-  background: #da8027;
-  border-color: #da8027;
+  background: #eb9e66;
+  border-color: #eb9e66;
 }
 .ant-steps-item-finish
   > .ant-steps-item-container
   > .ant-steps-item-content
   > .ant-steps-item-title::after {
-  background-color: #da8027;
+  background-color: #eb9e66;
 }
 .ant-steps-item-finish
   > .ant-steps-item-container
   > .ant-steps-item-tail::after {
-  background-color: #da8027;
+  background-color: #eb9e66;
 }
