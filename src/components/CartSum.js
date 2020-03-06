@@ -1,10 +1,13 @@
 import React from "react";
+import { Typography } from 'antd';
 import "./CartSum.css";
+
+const { Text } = Typography;
 
 const CartSum = props => {
   return (
     <div className="total-cart-container">
-      <h2>CART TOTAL: <span className={'cart-total'}>{props.cartTotal}</span></h2>
+      <Text className="custom-title">CART TOTAL: <span className="price-style">{props.cartTotal}</span></Text>
     </div>
   );
 };

@@ -7,7 +7,7 @@
 }
 
 .ant-steps {
-  margin-left: 80px;
+  /* margin-left: 80px; */
   margin-bottom: 30px;
 }
 @media (min-width: 576px) {
@@ -17,12 +17,15 @@
 }
 
 .steps-content {
+  min-height: 580px;
   padding: 5px;
   margin-top: 16px;
   border: 2px solid #eb9e66;
   border-radius: 6px;
   background-color: #ffffff;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .steps-action {
@@ -76,11 +79,10 @@
   transition: all 0.5s;
 }
 .next-button:hover,
-.next-button:focus{
+.next-button:focus {
   background-color: #eb9e66;
-  border-color:#eb9e66;
-  color:#fff;
-  
+  border-color: #eb9e66;
+  color: #fff;
 }
 
 /* ----------------------------stepper-------------------------- */

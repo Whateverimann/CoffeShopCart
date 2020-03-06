@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import ShoppingCart from "./ShoppingCart";
-import Adress from "./Adress";
+import AdressForm from "./AdressForm";
 import DeliveryPayment from "./DeliveryPayment";
 import { Steps, Button, message } from "antd";
 
@@ -14,7 +14,7 @@ const steps = [
   },
   {
     title: "Adress",
-    content: <Adress />
+    content: <AdressForm />
   },
   {
     title: "Delivery & Payment",

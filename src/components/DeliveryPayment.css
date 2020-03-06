@@ -1,0 +1,36 @@
+.delivery-col {
+  padding: 20px;
+}
+
+.ant-radio-group {
+  margin-top: 20px;
+  text-align: start;
+}
+.ant-radio-wrapper {
+  font-size: 16px;
+}
+.custom-radio {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+}
+
+.ant-radio-checked .ant-radio-inner {
+  border-color: #eb9e66;
+}
+.ant-radio-wrapper:hover .ant-radio,
+.ant-radio:hover .ant-radio-inner,
+.ant-radio-input:focus + .ant-radio-inner {
+  border-color: #eb9e66;
+}
+
+.ant-radio-checked::after,
+.ant-radio-inner::after {
+  border: 1px solid #eb9e66;
+  background-color: #eb9e66;
+}
+.paczkomaty-map {
+  width: 100%;
+  height: 100%;
+  margin: 20px auto;
+}

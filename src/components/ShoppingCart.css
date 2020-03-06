@@ -1,18 +1,17 @@
 @import "~antd/dist/antd.css";
 
-.content {
-  min-height: 570px;
-  display: flex;
-  flex-direction: column;
-}
-
 /* -------------------------table----------------------- */
 .ant-table-wrapper {
   min-width: 100%;
 }
+.picture-column{
+  display: flex;
+  min-height:54px ;
+}
 
 img {
   height: 50px;
+  margin:auto;
   padding: 0;
 }
 .ant-table-small {
@@ -59,14 +58,15 @@ img {
   height: 100%;
 }
 .ant-table-tbody > tr > td {
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
 }
 
 .ant-table-tbody
   > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected)
   > td {
   background: #fff;
-  border-bottom: 1px solid #eb9e66;
+  border-bottom: 2px solid #eb9e66;
 }
 
 .total-price {

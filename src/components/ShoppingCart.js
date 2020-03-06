@@ -175,7 +175,7 @@ class ShoppingCart extends Component {
 
   render() {
     return (
-      <div className="content">
+      <>
         <Row>
           <div className="products-list">
             <Table
@@ -184,6 +184,7 @@ class ShoppingCart extends Component {
               dataSource={this.state.products}
             >
               <Column
+                className="picture-column"
                 title=""
                 dataIndex="picture"
                 key="picture"
@@ -246,7 +247,7 @@ class ShoppingCart extends Component {
             <CartSum cartTotal={this.state.cartTotal} />
           </Col>
         </Row>
-      </div>
+      </>
     );
   }
 }
