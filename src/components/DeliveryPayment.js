@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Radio, Typography } from "antd";
+import { Row, Col, Radio, Typography, Button } from "antd";
 import "./DeliveryPayment.css";
 
 const { Text } = Typography;
@@ -8,7 +8,8 @@ class DeliveryPayment extends Component {
   state = {
     deliveryValue: 1,
     paymentValue: 1,
-    cartTotalDelivery: ""
+    cartTotalDelivery: "",
+    paczkomat: ""
   };
 
   prices = {
@@ -20,12 +21,27 @@ class DeliveryPayment extends Component {
   };
 
   onChange = e => {
-    console.log("radio checked", e.target.value);
     const target = e.target;
     const value = target.value;
     const name = target.name;
+
     this.setState({
       [name]: value
+    });
+  };
+
+  getPoint = point => {
+    if (window.point) {
+      this.setState({
+        paczkomat: window.point.name
+      });
+    }
+  };
+
+  handleChangePoint = () => {
+    this.getPoint();
+    this.setState({
+      paczkomat: ""
     });
   };
 
@@ -52,16 +68,20 @@ class DeliveryPayment extends Component {
               <span className="price-style">{this.prices.paczkomatPrice}</span>
             </Radio>
           </Radio.Group>
-
-          <div
-            className={
-              this.state.deliveryValue === 3
-                ? "visible paczkomaty-map"
-                : "hidden"
-            }
-          >
-            <div id="easypack-map"></div>
-          </div>
+          {this.state.paczkomat ? (
+            <div className="paczkomaty-map">
+              <p>Wybrałeś paczkomat: {this.state.paczkomat}</p>
+              <Button onClick={this.handleChangePoint} className="add-product">
+                Zmień paczkomat
+              </Button>
+            </div>
+          ) : (
+            <div className="paczkomaty-map" onClick={this.getPoint}>
+              {this.state.deliveryValue === 3 ? (
+                <div id="easypack-map"></div>
+              ) : null}
+            </div>
+          )}
         </Col>
         <Col className="custom-col delivery-col" xs={24} md={12}>
           <Text className="custom-title">Payment options:</Text>

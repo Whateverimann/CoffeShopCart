@@ -17,8 +17,9 @@
       window.easyPackAsyncInit = function () {
           easyPack.init({});
           let map = easyPack.mapWidget('easypack-map', function(point) {
-              console.log(point);
-              alert(point.name, point.location_description);
+              // console.log(point);
+              // alert(point.name, point.location_description);
+              window.point = point;
           });
       };
    </script>
