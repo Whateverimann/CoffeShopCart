@@ -34,3 +34,15 @@
   height: 100%;
   margin: 20px auto;
 }
+
+.inpost-div{
+    padding: 20px;
+flex-grow: 1;
+flex-direction: column;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.point{
+    color:#eb9e66;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col, Radio, Typography, Button } from "antd";
+import { ReloadOutlined } from "@ant-design/icons";
 import "./DeliveryPayment.css";
 
 const { Text } = Typography;
@@ -30,19 +31,30 @@ class DeliveryPayment extends Component {
     });
   };
 
-  getPoint = point => {
-    if (window.point) {
-      this.setState({
+//   getPoint = point => {
+//     if (window.point) {
+//       this.setState({
+//         paczkomat: window.point.name
+//       });
+//     }
+//   };
+
+  easyPackAsyncInit = () => {
+    window.easyPack.init({});
+    window.easyPack.mapWidget("easypack-map", function(point) {
+      return point
+      
+    });
+     this.setState({
         paczkomat: window.point.name
       });
-    }
   };
 
-  handleChangePoint = () => {
-    this.getPoint();
+  handlePointchange = () => {
     this.setState({
       paczkomat: ""
     });
+    this.easyPackAsyncInit();
   };
 
   render() {
@@ -69,14 +81,21 @@ class DeliveryPayment extends Component {
             </Radio>
           </Radio.Group>
           {this.state.paczkomat ? (
-            <div className="paczkomaty-map">
-              <p>Wybrałeś paczkomat: {this.state.paczkomat}</p>
-              <Button onClick={this.handleChangePoint} className="add-product">
-                Zmień paczkomat
+            <div className="inpost-div">
+              <Text className="custom-title">
+                Wybrałeś paczkomat:{" "}
+                <span className="point">{this.state.paczkomat}</span>
+              </Text>
+              <Button
+                id="showMap"
+                onClick={this.easyPackAsyncInit}
+                className="update-cart-button"
+              >
+                Zmień paczkomat <ReloadOutlined />
               </Button>
             </div>
           ) : (
-            <div className="paczkomaty-map" onClick={this.getPoint}>
+            <div className="paczkomaty-map" onLoad={this.easyPackAsyncInit}>
               {this.state.deliveryValue === 3 ? (
                 <div id="easypack-map"></div>
               ) : null}

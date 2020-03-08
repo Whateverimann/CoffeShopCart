@@ -3,9 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="" />
-    <link href="https://fonts.googleapis.com/css?family=Spartan:300,400,500,600,700&display=swap" rel="stylesheet">
-    <script async src="https://sandbox-geowidget.easypack24.net/js/sdk-for-javascript.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://sandbox-geowidget.easypack24.net/css/easypack.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Spartan:300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      async
+      src="https://sandbox-geowidget.easypack24.net/js/sdk-for-javascript.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://sandbox-geowidget.easypack24.net/css/easypack.css"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <title>CoffeShop</title>
@@ -14,14 +24,16 @@
     <div id="root"></div>
 
     <script type="text/javascript">
-      window.easyPackAsyncInit = function () {
-          easyPack.init({});
-          let map = easyPack.mapWidget('easypack-map', function(point) {
-              // console.log(point);
-              // alert(point.name, point.location_description);
-              window.point = point;
-          });
+      window.easyPackAsyncInit = function() {
+        easyPack.init({});
+        let map = easyPack.mapWidget("easypack-map", function(point) {
+          // console.log(point);
+          // alert(point.name, point.location_description);
+          window.point = point;
+        });
       };
-   </script>
+      window.easyPackAsyncInit = easyPackAsyncInit;
+      window.easyPack = easyPack;
+    </script>
   </body>
 </html>
