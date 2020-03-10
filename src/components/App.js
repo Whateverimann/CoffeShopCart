@@ -56,7 +56,9 @@ class App extends Component {
           {current === steps.length - 1 && (
             <Button
               className="next-button"
-              onClick={() => message.success("Processing complete!")}
+              onClick={() =>
+                message.success("Dziękujemy za zakupy! Zapraszamy ponownie ;)")
+              }
             >
               Done
             </Button>

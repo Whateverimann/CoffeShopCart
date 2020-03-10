@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Row, Col, Radio, Typography, Button } from "antd";
-import { ReloadOutlined } from "@ant-design/icons";
+import { Row, Col, Radio, Typography} from "antd";
+
 import "./DeliveryPayment.css";
 
 const { Text } = Typography;
@@ -26,35 +26,37 @@ class DeliveryPayment extends Component {
     const value = target.value;
     const name = target.name;
 
+    if (target.value === 3) {
+      window.easyPack.mapWidget("easypack-map", function(point) {
+        window.point = point;
+      });
+    }
+
     this.setState({
       [name]: value
     });
   };
 
-//   getPoint = point => {
-//     if (window.point) {
-//       this.setState({
-//         paczkomat: window.point.name
-//       });
-//     }
-//   };
+  componentDidMount() {
+    window.easyPackAsyncInit = function() {
+      window.easyPack.init({
+        points: {
+          types: ["parcel_locker"],
+          functions: ["parcel_collect"]
+        },
+        map: {
+          initialTypes: ["parcel_locker"]
+        }
+      });
+    };
+  }
 
-  easyPackAsyncInit = () => {
-    window.easyPack.init({});
-    window.easyPack.mapWidget("easypack-map", function(point) {
-      return point
-      
-    });
-     this.setState({
+  getPoint = point => {
+    if (window.point) {
+      this.setState({
         paczkomat: window.point.name
       });
-  };
-
-  handlePointchange = () => {
-    this.setState({
-      paczkomat: ""
-    });
-    this.easyPackAsyncInit();
+    }
   };
 
   render() {
@@ -80,27 +82,19 @@ class DeliveryPayment extends Component {
               <span className="price-style">{this.prices.paczkomatPrice}</span>
             </Radio>
           </Radio.Group>
-          {this.state.paczkomat ? (
-            <div className="inpost-div">
-              <Text className="custom-title">
+          {this.state.paczkomat && this.state.deliveryValue === 3 ? (
+            <div className="center-div">
+              <Text className="custom-text">
                 Wybrałeś paczkomat:{" "}
                 <span className="point">{this.state.paczkomat}</span>
               </Text>
-              <Button
-                id="showMap"
-                onClick={this.easyPackAsyncInit}
-                className="update-cart-button"
-              >
-                Zmień paczkomat <ReloadOutlined />
-              </Button>
             </div>
-          ) : (
-            <div className="paczkomaty-map" onLoad={this.easyPackAsyncInit}>
-              {this.state.deliveryValue === 3 ? (
-                <div id="easypack-map"></div>
-              ) : null}
-            </div>
-          )}
+          ) : null}
+          <div className="paczkomaty-map" onClick={this.getPoint}>
+            {this.state.deliveryValue === 3 ? (
+              <div id="easypack-map"></div>
+            ) : null}
+          </div>
         </Col>
         <Col className="custom-col delivery-col" xs={24} md={12}>
           <Text className="custom-title">Payment options:</Text>
@@ -118,7 +112,9 @@ class DeliveryPayment extends Component {
               <span className="price-style">{this.prices.cashTransfer}</span>
             </Radio>
           </Radio.Group>
-          <Text className="custom-title total">Total:</Text>
+          <div className="summary-div">
+            <Text className="custom-title total">Total:</Text>
+          </div>
         </Col>
       </Row>
     );

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./ShoppingCart.css";
 import CartSum from "./CartSum";
-import { Row, Col, Table, Button, InputNumber, message, Icon } from "antd";
-import { ReloadOutlined } from "@ant-design/icons";
+import { Row, Col, Table, Button, InputNumber, message } from "antd";
+import { ReloadOutlined, CloseOutlined } from "@ant-design/icons";
 import picture1 from "../images/baristaespresso.jpg";
 import picture2 from "../images/baristacaffecrema.jpg";
 import picture3 from "../images/privatkaffeeafricanblue.jpg";
@@ -219,7 +219,7 @@ class ShoppingCart extends Component {
                     className={"delete-row-button"}
                     onClick={() => this.deleteRow(record)}
                   >
-                    <Icon type="close" />
+                    <CloseOutlined />
                   </Button>
                 )}
               />
