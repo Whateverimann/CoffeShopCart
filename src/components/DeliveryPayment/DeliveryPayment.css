@@ -1,5 +1,7 @@
 .delivery-col {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .ant-radio-group {

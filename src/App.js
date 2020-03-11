@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import ShoppingCart from "./ShoppingCart";
-import AdressForm from "./AdressForm";
-import DeliveryPayment from "./DeliveryPayment";
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
+import AdressForm from "./components/AdressForm/AdressForm";
+import DeliveryPayment from "./components/DeliveryPayment/DeliveryPayment";
 import { Steps, Button, message } from "antd";
 
 const { Step } = Steps;

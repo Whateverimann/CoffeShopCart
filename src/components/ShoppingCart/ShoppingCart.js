@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./ShoppingCart.css";
-import CartSum from "./CartSum";
+import CartSum from "../CartSum/CartSum";
 import { Row, Col, Table, Button, InputNumber, message } from "antd";
 import { ReloadOutlined, CloseOutlined } from "@ant-design/icons";
-import picture1 from "../images/baristaespresso.jpg";
-import picture2 from "../images/baristacaffecrema.jpg";
-import picture3 from "../images/privatkaffeeafricanblue.jpg";
-import picture4 from "../images/espressomilanostyle.jpg";
-import picture5 from "../images/espressosiciliastyle.jpg";
+import picture1 from "../../images/baristaespresso.jpg";
+import picture2 from "../../images/baristacaffecrema.jpg";
+import picture3 from "../../images/privatkaffeeafricanblue.jpg";
+import picture4 from "../../images/espressomilanostyle.jpg";
+import picture5 from "../../images/espressosiciliastyle.jpg";
 
 const { Column } = Table;
 
@@ -178,11 +178,7 @@ class ShoppingCart extends Component {
       <>
         <Row>
           <div className="products-list">
-            <Table
-              placeholder={"Add Product!"}
-              pagination={false}
-              dataSource={this.state.products}
-            >
+            <Table renderEmpty={false} pagination={false} dataSource={this.state.products}>
               <Column
                 className="picture-column"
                 title=""

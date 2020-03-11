@@ -62,7 +62,7 @@ class DeliveryPayment extends Component {
   render() {
     return (
       <Row className="custom-row">
-        <Col className="custom-col delivery-col" xs={24} md={12}>
+        <Col className="delivery-col" xs={24} md={12}>
           <Text className="custom-title">Delivery options:</Text>
           <Radio.Group
             name="deliveryValue"
@@ -96,7 +96,7 @@ class DeliveryPayment extends Component {
             ) : null}
           </div>
         </Col>
-        <Col className="custom-col delivery-col" xs={24} md={12}>
+        <Col className="delivery-col" xs={24} md={12}>
           <Text className="custom-title">Payment options:</Text>
           <Radio.Group
             name="paymentValue"
