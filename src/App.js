@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actionTypes from "./store/actionTypes";
 import "./App.css";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import AdressForm from "./components/AdressForm/AdressForm";
@@ -9,15 +11,15 @@ const { Step } = Steps;
 
 const steps = [
   {
-    title: "Shopping Cart",
+    title: "Koszyk",
     content: <ShoppingCart />
   },
   {
-    title: "Adress",
+    title: "Twoje dane",
     content: <AdressForm />
   },
   {
-    title: "Delivery & Payment",
+    title: "Dostawa i płatność",
     content: <DeliveryPayment />
   }
 ];
@@ -28,6 +30,7 @@ class App extends Component {
   };
 
   next() {
+    this.props.handleCartTotal();
     const current = this.state.current + 1;
     this.setState({ current });
   }
@@ -49,23 +52,28 @@ class App extends Component {
         <div className="steps-content">{steps[current].content}</div>
         <div className="steps-action">
           {current < steps.length - 1 && (
-            <Button className="next-button" onClick={() => this.next()}>
-              Next
+            <Button
+              className="next-button"
+              disabled={!this.props.cart.length}
+              onClick={() => this.next()}
+            >
+              Dalej
             </Button>
           )}
           {current === steps.length - 1 && (
             <Button
               className="next-button"
+              disabled={this.state.disabled}
               onClick={() =>
                 message.success("Dziękujemy za zakupy! Zapraszamy ponownie ;)")
               }
             >
-              Done
+              Koniec!
             </Button>
           )}
           {current > 0 && (
             <Button className="previous-button" onClick={() => this.prev()}>
-              Previous
+              Powrót
             </Button>
           )}
         </div>
@@ -74,4 +82,17 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    cart: state.shoppingCartReducer.cart,
+    cartTotal: state.shoppingCartReducer.cartTotal
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleCartTotal: () => dispatch({ type: actionTypes.CART_TOTAL })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
