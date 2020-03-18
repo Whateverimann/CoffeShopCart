@@ -1,51 +1,22 @@
 import React, { Component } from "react";
-import { Row, Col, Form, Input, Button, Checkbox } from "antd";
+import { Row, Col, Form, Input, Checkbox } from "antd";
 import "./AdressForm.css";
+import { connect } from "react-redux";
+import * as actionTypes from "./../../store/actionTypes";
 
 const InputGroup = Input.Group;
 
 class AdressForm extends Component {
   formRef = React.createRef();
 
-  state = {
-    values: {
-      name: "",
-      lastName: "",
-      email: "",
-      phone: 0,
-      adress: "",
-      city: "",
-      zip: "",
-
-      companyname: "",
-      NIP: "",
-      companyEmail: "",
-      companyPhone: 0,
-      companyAdress: "",
-      companyCity: "",
-      companyZip: ""
-    },
-    invoiceNeeded: false
-  };
-
-  onFinish = values => {
-    console.log(values);
-    this.setState({
-      values: values
-    });
-  };
-
-  handleCheckbox = e => {
-    const checked = e.target.checked;
-    this.setState({
-      invoiceNeeded: checked
-    });
-  };
-
   render() {
     return (
       <>
-        <Form name="basicForm" onFinish={this.onFinish} ref={this.formRef}>
+        <Form
+          name="basicForm"
+          onFinish={this.props.onFinish}
+          ref={this.formRef}
+        >
           <Row>
             <Col sx={24} md={12} className="custom-col">
               <Form.Item
@@ -100,7 +71,7 @@ class AdressForm extends Component {
                   {
                     type: "regexp",
                     pattern: new RegExp(/^[0-8]{8,12}$/g),
-                    message:"Niepoprawny format!"
+                    message: "Niepoprawny format!"
                   }
                 ]}
               >
@@ -151,10 +122,10 @@ class AdressForm extends Component {
                 <Checkbox
                   type="checkbox"
                   name="invoiceNeeded"
-                  checked={this.state.invoiceNeeded}
-                  onChange={this.handleCheckbox}
+                  checked={this.props.invoiceNeeded}
+                  onChange={this.props.handleCheckbox}
                 >
-                  Do you need an invoice for company?
+                  Czy potrzebujesz faktury na firmę?
                 </Checkbox>
               </Form.Item>
             </Col>
@@ -162,14 +133,14 @@ class AdressForm extends Component {
               sx={24}
               md={12}
               className={
-                this.state.invoiceNeeded ? "visible custom-col" : "hidden"
+                this.props.invoiceNeeded ? "visible custom-col" : "hidden"
               }
             >
               <Form.Item
                 name="companyName"
                 rules={[
                   {
-                    required: this.state.invoiceNeeded,
+                    required: this.props.invoiceNeeded,
                     message: "Nazwa firmy jest wymagana."
                   }
                 ]}
@@ -181,7 +152,7 @@ class AdressForm extends Component {
                 name="NIP"
                 rules={[
                   {
-                    required: this.state.invoiceNeeded,
+                    required: this.props.invoiceNeeded,
                     message: "NIP jest wymagane."
                   },
                   {
@@ -198,7 +169,7 @@ class AdressForm extends Component {
                 name="companyEmail"
                 rules={[
                   {
-                    required: this.state.invoiceNeeded,
+                    required: this.props.invoiceNeeded,
                     message: "E-mail jest wymagany."
                   },
                   {
@@ -214,7 +185,7 @@ class AdressForm extends Component {
                 name="companyPhone"
                 rules={[
                   {
-                    required: this.state.invoiceNeeded,
+                    required: this.props.invoiceNeeded,
                     message: "Numer telefonu jest wymagany."
                   },
                   {
@@ -231,7 +202,7 @@ class AdressForm extends Component {
                 name="companyAdress"
                 rules={[
                   {
-                    required: this.state.invoiceNeeded,
+                    required: this.props.invoiceNeeded,
                     message: "Adres jest wymagany."
                   }
                 ]}
@@ -247,7 +218,7 @@ class AdressForm extends Component {
                         name="companyCity"
                         rules={[
                           {
-                            required: this.state.invoiceNeeded,
+                            required: this.props.invoiceNeeded,
                             message: "Miasto jest wymagane."
                           }
                         ]}
@@ -260,7 +231,7 @@ class AdressForm extends Component {
                         name="companyZip"
                         rules={[
                           {
-                            required: this.state.invoiceNeeded,
+                            required: this.props.invoiceNeeded,
                             message: "Kod pocztowy jest wymagany."
                           }
                         ]}
@@ -272,9 +243,9 @@ class AdressForm extends Component {
                 </InputGroup>
               </Form.Item>
             </Col>
-            <Button type="primary" htmlType="submit">
+            {/* <Button type="primary" htmlType="submit">
               Submit
-            </Button>
+            </Button> */}
           </Row>
         </Form>
       </>
@@ -282,4 +253,40 @@ class AdressForm extends Component {
   }
 }
 
-export default AdressForm;
+// REDUX
+const mapStateToProps = state => {
+  return {
+    invoiceNeeded: state.adressFormReducer.invoiceNeeded,
+    values: state.adressFormReducer.values
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleCheckbox: e =>
+      dispatch({ type: actionTypes.FORM_CHECKBOX, event: e }),
+    onFinish: values =>
+      dispatch({
+        type: actionTypes.ADD_FORM_VALUES,
+        values: values
+      })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdressForm);
+
+
+
+  // onFinish = values => {
+  //   console.log(values);
+  //   this.setState({
+  //     values: values
+  //   });
+  // };
+
+  // handleCheckbox = e => {
+  //   const checked = e.target.checked;
+  //   this.setState({
+  //     invoiceNeeded: checked
+  //   });
+  // };

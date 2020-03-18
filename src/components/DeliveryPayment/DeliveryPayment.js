@@ -1,18 +1,12 @@
 import React, { Component } from "react";
-import { Row, Col, Radio, Typography} from "antd";
-
+import { Row, Col, Radio, Typography } from "antd";
 import "./DeliveryPayment.css";
+import { connect } from "react-redux";
+import * as actionTypes from "./../../store/actionTypes";
 
 const { Text } = Typography;
 
 class DeliveryPayment extends Component {
-  state = {
-    deliveryValue: 1,
-    paymentValue: 1,
-    cartTotalDelivery: "",
-    paczkomat: ""
-  };
-
   prices = {
     courierPrice: 14.99,
     postPrice: 9.99,
@@ -32,9 +26,7 @@ class DeliveryPayment extends Component {
       });
     }
 
-    this.setState({
-      [name]: value
-    });
+    return this.props.getValues(name, value);
   };
 
   componentDidMount() {
@@ -52,12 +44,20 @@ class DeliveryPayment extends Component {
   }
 
   getPoint = point => {
+    console.log("działa point", window.point);
     if (window.point) {
-      this.setState({
-        paczkomat: window.point.name
-      });
+      const selectedPoint = window.point;
+      return this.props.setPoint(selectedPoint);
     }
   };
+
+  // orderTotal = (e) => {
+
+
+
+
+  //   const orderPrice = (this.props.cartTotal + deliveryPrice + paymentPrice)
+  // }
 
   render() {
     return (
@@ -67,7 +67,7 @@ class DeliveryPayment extends Component {
           <Radio.Group
             name="deliveryValue"
             onChange={this.onChange}
-            value={this.state.deliveryValue}
+            value={this.props.deliveryValue}
           >
             <Radio className="custom-radio" value={1}>
               Kurier AtYourDoor{" "}
@@ -82,16 +82,16 @@ class DeliveryPayment extends Component {
               <span className="price-style">{this.prices.paczkomatPrice}</span>
             </Radio>
           </Radio.Group>
-          {this.state.paczkomat && this.state.deliveryValue === 3 ? (
+          {this.props.paczkomat && this.props.deliveryValue === 3 ? (
             <div className="center-div">
               <Text className="custom-text">
                 Wybrałeś paczkomat:{" "}
-                <span className="point">{this.state.paczkomat}</span>
+                <span className="point">{this.props.paczkomat}</span>
               </Text>
             </div>
           ) : null}
           <div className="paczkomaty-map" onClick={this.getPoint}>
-            {this.state.deliveryValue === 3 ? (
+            {this.props.deliveryValue === 3 ? (
               <div id="easypack-map"></div>
             ) : null}
           </div>
@@ -101,7 +101,7 @@ class DeliveryPayment extends Component {
           <Radio.Group
             name="paymentValue"
             onChange={this.onChange}
-            value={this.state.paymentValue}
+            value={this.props.paymentValue}
           >
             <Radio className="custom-radio" value={1}>
               Cash on delivery{" "}
@@ -113,7 +113,7 @@ class DeliveryPayment extends Component {
             </Radio>
           </Radio.Group>
           <div className="summary-div">
-            <Text className="custom-title total">Total:</Text>
+            <Text className="custom-title total">Razem do zapłaty: <span className="price-style">{this.props.cartTotal}</span></Text>
           </div>
         </Col>
       </Row>
@@ -121,4 +121,30 @@ class DeliveryPayment extends Component {
   }
 }
 
-export default DeliveryPayment;
+// REDUX
+const mapStateToProps = state => {
+  return {
+    deliveryValue: state.deliveryPaymentReducer.deliveryValue,
+    paymentValue: state.deliveryPaymentReducer.paymentValue,
+    paczkomat: state.deliveryPaymentReducer.paczkomat,
+    cartTotal: state.shoppingCartReducer.cartTotal
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getValues: (name, value) =>
+      dispatch({
+        type: actionTypes.GET_DELIVERY_PAYMENT_VALUES,
+        payload: { name: name, value: value }
+      }),
+    setPoint: selectedPoint =>
+      dispatch({
+        type: actionTypes.SET_POINT,
+        selectedPoint: selectedPoint
+      }),
+    orderTotal: () => dispatch({ type: actionTypes.ORDER_TOTAL })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeliveryPayment);

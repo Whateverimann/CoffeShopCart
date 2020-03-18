@@ -28,7 +28,7 @@ margin-top:10px;
 
 .ant-input:focus,
 .ant-input:hover {
-  border-bottom: 3px solid #eb9e66;
+  border-bottom: 2px solid #eb9e66;
   box-shadow: none;
 }
 

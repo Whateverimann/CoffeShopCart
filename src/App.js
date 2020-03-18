@@ -62,6 +62,7 @@ class App extends Component {
           )}
           {current === steps.length - 1 && (
             <Button
+           
               className="next-button"
               disabled={this.state.disabled}
               onClick={() =>
