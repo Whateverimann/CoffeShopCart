@@ -1,5 +1,10 @@
 .delivery-col {
-  padding: 20px;
+  padding: 30px 20px 30px 30px;
+  display: flex;
+  flex-direction: column;
+}
+.payment-col{
+  padding: 30px 30px 30px 20px;
   display: flex;
   flex-direction: column;
 }
@@ -55,11 +60,26 @@
 
 .summary-div{
   margin: 60px 0;
+  padding: 40px 20px;
   flex-grow: 1;
   flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #fcf1e8;
-  
+  }
+
+  .red{
+    color: #ea6861;
+  }
+
+.ant-divider{
+  background: #fff;
+  width: 80%;
+  min-width: 80%;
+  height: 3px;
+}
+
+.total span{
+  color:#eb9e66;
 }

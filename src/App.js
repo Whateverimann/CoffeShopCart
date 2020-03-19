@@ -5,7 +5,8 @@ import "./App.css";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import AdressForm from "./components/AdressForm/AdressForm";
 import DeliveryPayment from "./components/DeliveryPayment/DeliveryPayment";
-import { Steps, Button, message } from "antd";
+import { Steps, Button, Modal } from "antd";
+import { ReloadOutlined, SmileOutlined } from "@ant-design/icons";
 
 const { Step } = Steps;
 
@@ -26,11 +27,29 @@ const steps = [
 
 class App extends Component {
   state = {
-    current: 0
+    current: 0,
+    visible: false
+  };
+
+  showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
+  handleOk = () => {
+    this.setState({ visible: false });
+  };
+  handleBack = () => {
+    this.setState({ current: 0, visible: false });
+    window.location.reload(false);
+  };
+   handleCancel = () => {
+    this.setState({ visible: false });
   };
 
   next() {
     this.props.handleCartTotal();
+
     const current = this.state.current + 1;
     this.setState({ current });
   }
@@ -62,14 +81,11 @@ class App extends Component {
           )}
           {current === steps.length - 1 && (
             <Button
-           
               className="next-button"
               disabled={this.state.disabled}
-              onClick={() =>
-                message.success("Dziękujemy za zakupy! Zapraszamy ponownie ;)")
-              }
+              onClick={this.showModal}
             >
-              Koniec!
+              Zamów i zapłać!
             </Button>
           )}
           {current > 0 && (
@@ -78,6 +94,22 @@ class App extends Component {
             </Button>
           )}
         </div>
+        <Modal
+          visible={this.state.visible}
+          title="Dziękujemy za zakupy!"
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button key="back" className="previous-button" onClick={this.handleBack}>
+              Jeszcze raz! <ReloadOutlined />
+            </Button>,
+            <Button key="submit" className="previous-button" onClick={this.handleOk}>
+              Ok!
+            </Button>
+          ]}
+        >
+          <p>Nie martw się! Kawa zaraz dotrze! <SmileOutlined /></p>
+        </Modal>
       </div>
     );
   }

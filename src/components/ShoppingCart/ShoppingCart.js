@@ -9,10 +9,11 @@ import * as actionTypes from "./../../store/actionTypes";
 const { Column } = Table;
 
 class ShoppingCart extends Component {
+
   handleAddProduct = () => {
-    console.log(this.props.cart);
     if (this.props.cart.length < 5) {
-      return this.props.addProduct();
+      this.props.addProduct();
+      this.props.handleCartTotal();
     } else this.handleWarning();
   };
 
@@ -127,114 +128,3 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);
-
-//  handleAddProduct = () => {
-//     const cart = [...this.state.cart];
-//     let products = [...this.state.products];
-
-//     if (cart.length < 5) {
-//       const index = Math.floor(Math.random() * products.length);
-//       const product = products[index];
-
-//       products = products.filter(p => p.key !== product.key);
-//       cart.push(product);
-
-//       this.setState({
-//         cart,
-//         products
-//       });
-//     } else this.handleWarning();
-//   };
-
-//   changeAmount = (record, value) => {
-//     const cart = [...this.state.products];
-
-//     cart.forEach(product => {
-//       if (product.key === record.key) {
-//         product.amount = value;
-//         product.totalPrice = (product.amount * product.price).toFixed(2);
-//         product.totalPrice = product.totalPrice * 1;
-//       }
-//     });
-//     this.setState({
-//       cart
-//     });
-//   };
-
-//   handleCartTotal = () => {
-//     const cart = [...this.state.cart];
-//     let total = 0;
-
-//     for (let i = 0; i < cart.length; i++) {
-//       total += cart[i].totalPrice;
-//     }
-//     total = total.toFixed(2);
-
-//     this.setState({
-//       cartTotal: total
-//     });
-//   };
-
-//   deleteRow = record => {
-//     let cart = [...this.state.cart];
-//     let products = [...this.state.products];
-
-//     const product = cart.find(product => product.key === record.key);
-//     cart = cart.filter(product => product.key !== record.key);
-
-//     products = products.concat(product);
-//     this.setState({
-//       cart,
-//       products
-//     });
-//   };
-
-//   handleReset = () => {
-//     this.setState({
-//       cart: [],
-//       cartTotal: "",
-//       products: [
-//         {
-//           key: 0,
-//           name: "Barista Espresso 0,5kg",
-//           amount: 1,
-//           price: 38.99,
-//           totalPrice: 38.99,
-//           picture: picture1
-//         },
-//         {
-//           key: 1,
-//           name: "Barista Caffe Crema 0,5kg",
-//           amount: 1,
-//           price: 40.99,
-//           totalPrice: 40.99,
-//           picture: picture2
-//         },
-//         {
-//           key: 2,
-//           name: "Privat Kaffe African Blue 0,5kg",
-//           amount: 1,
-//           price: 44.99,
-//           totalPrice: 44.99,
-//           picture: picture3
-//         },
-//         {
-//           key: 3,
-//           name: "Espresso Milano Style 0,5kg",
-//           amount: 1,
-//           price: 39.99,
-//           totalPrice: 39.99,
-//           picture: picture4
-//         },
-//         {
-//           key: 4,
-//           name: "Espresso Sicilia Style 0,5kg",
-//           amount: 1,
-//           price: 41.99,
-//           totalPrice: 41.99,
-//           picture: picture5
-//         }
-//       ]
-//     });
-//   };
-

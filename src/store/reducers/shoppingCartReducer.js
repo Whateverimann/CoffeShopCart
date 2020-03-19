@@ -7,7 +7,7 @@ import picture5 from "../../images/espressosiciliastyle.jpg";
 
 const initialState = {
   cart: [],
-  cartTotal: "",
+  cartTotal: '0.00',
   products: [
     {
       key: 0,
@@ -74,7 +74,7 @@ const reducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        cart: cart
+        cart: cart 
       };
 
     case actionTypes.CART_TOTAL:
@@ -101,7 +101,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.CART_RESET:
       return {
         cart: [],
-        cartTotal: "",
+        cartTotal: '',
         products: [
           {
             key: 0,

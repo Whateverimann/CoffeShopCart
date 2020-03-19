@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Form, Input, Checkbox } from "antd";
+import { Row, Col, Form, Input, Checkbox, Button } from "antd";
 import "./AdressForm.css";
 import { connect } from "react-redux";
 import * as actionTypes from "./../../store/actionTypes";
@@ -8,6 +8,12 @@ const InputGroup = Input.Group;
 
 class AdressForm extends Component {
   formRef = React.createRef();
+  
+  // onSubmit = (values) => {
+    
+  //   this.formRef.current.setFieldsValue({})
+    
+  // }
 
   render() {
     return (
@@ -15,7 +21,7 @@ class AdressForm extends Component {
         <Form
           name="basicForm"
           onFinish={this.props.onFinish}
-          ref={this.formRef}
+          ref="myform"
         >
           <Row>
             <Col sx={24} md={12} className="custom-col">
@@ -243,9 +249,9 @@ class AdressForm extends Component {
                 </InputGroup>
               </Form.Item>
             </Col>
-            {/* <Button type="primary" htmlType="submit">
+            <Button type="primary" onClick={this.onSubmit}>
               Submit
-            </Button> */}
+            </Button>
           </Row>
         </Form>
       </>
@@ -275,18 +281,16 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdressForm);
 
+// onFinish = values => {
+//   console.log(values);
+//   this.setState({
+//     values: values
+//   });
+// };
 
-
-  // onFinish = values => {
-  //   console.log(values);
-  //   this.setState({
-  //     values: values
-  //   });
-  // };
-
-  // handleCheckbox = e => {
-  //   const checked = e.target.checked;
-  //   this.setState({
-  //     invoiceNeeded: checked
-  //   });
-  // };
+// handleCheckbox = e => {
+//   const checked = e.target.checked;
+//   this.setState({
+//     invoiceNeeded: checked
+//   });
+// };

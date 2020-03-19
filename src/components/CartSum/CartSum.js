@@ -7,7 +7,7 @@ const { Text } = Typography;
 const CartSum = props => {
   return (
     <div className="total-cart-container">
-      <Text className="custom-title">Wartość koszyka: <span className="price-style">{props.cartTotal}</span></Text>
+      <Text className="custom-title">Wartość koszyka: <span className="price-style">{props.cartTotal}</span> zł</Text>
     </div>
   );
 };
