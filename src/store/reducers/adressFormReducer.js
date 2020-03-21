@@ -1,23 +1,23 @@
 import * as actionTypes from "./../actionTypes";
 
 const initialState = {
-  values: {
-    name: "",
-    lastName: "",
-    email: "",
-    phone: 0,
-    adress: "",
-    city: "",
-    zip: "",
+  values: [
+    { name: "" },
+    { lastName: "" },
+    { email: "" },
+    { phone: 0 },
+    { adress: "" },
+    { city: "" },
+    { zip: "" },
 
-    companyname: "",
-    NIP: "",
-    companyEmail: "",
-    companyPhone: 0,
-    companyAdress: "",
-    companyCity: "",
-    companyZip: ""
-  },
+    { companyname: "" },
+    { NIP: "" },
+    { companyEmail: "" },
+    { companyPhone: 0 },
+    { companyAdress: "" },
+    { companyCity: "" },
+    { companyZip: "" }
+  ],
   invoiceNeeded: false
 };
 

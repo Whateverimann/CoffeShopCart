@@ -7,21 +7,20 @@ import * as actionTypes from "./../../store/actionTypes";
 const InputGroup = Input.Group;
 
 class AdressForm extends Component {
-  formRef = React.createRef();
-  
-  // onSubmit = (values) => {
-    
-  //   this.formRef.current.setFieldsValue({})
-    
-  // }
+  formRef = React.createRef();  
+
+  componentDidMount() {
+    this.formRef.current.setFieldsValue(this.props.values);
+      }
+
 
   render() {
     return (
       <>
         <Form
-          name="basicForm"
+          name="adressForm"
           onFinish={this.props.onFinish}
-          ref="myform"
+          ref={this.formRef}
         >
           <Row>
             <Col sx={24} md={12} className="custom-col">
@@ -249,7 +248,7 @@ class AdressForm extends Component {
                 </InputGroup>
               </Form.Item>
             </Col>
-            <Button type="primary" onClick={this.onSubmit}>
+            <Button type="primary" htmlType="submit">
               Submit
             </Button>
           </Row>

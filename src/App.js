@@ -11,22 +11,22 @@ import { ReloadOutlined, SmileOutlined } from "@ant-design/icons";
 const { Step } = Steps;
 
 const steps = [
-  {
-    title: "Koszyk",
-    content: <ShoppingCart />
-  },
-  {
-    title: "Twoje dane",
-    content: <AdressForm />
-  },
-  {
-    title: "Dostawa i płatność",
-    content: <DeliveryPayment />
-  }
-];
+    {
+      title: "Koszyk",
+      content: <ShoppingCart />
+    },
+    {
+      title: "Twoje dane",
+      content: <AdressForm />
+    },
+    {
+      title: "Dostawa i płatność",
+      content: <DeliveryPayment />
+    }
+  ];
 
 class App extends Component {
-  state = {
+    state = {
     current: 0,
     visible: false
   };
@@ -43,7 +43,7 @@ class App extends Component {
     this.setState({ current: 0, visible: false });
     window.location.reload(false);
   };
-   handleCancel = () => {
+  handleCancel = () => {
     this.setState({ visible: false });
   };
 
@@ -61,9 +61,9 @@ class App extends Component {
 
   render() {
     const current = this.state.current;
-    return (
+    return (            
       <div className="form-container">
-        <Steps className="ant-steps-label-vertical" current={current}>
+        <Steps className="ant-steps-label-vertical"current={current}>
           {steps.map(item => (
             <Step key={item.title} title={item.title} />
           ))}
@@ -100,15 +100,25 @@ class App extends Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
           footer={[
-            <Button key="back" className="previous-button" onClick={this.handleBack}>
+            <Button
+              key="back"
+              className="previous-button"
+              onClick={this.handleBack}
+            >
               Jeszcze raz! <ReloadOutlined />
             </Button>,
-            <Button key="submit" className="previous-button" onClick={this.handleOk}>
+            <Button
+              key="submit"
+              className="previous-button"
+              onClick={this.handleOk}
+            >
               Ok!
             </Button>
           ]}
         >
-          <p>Nie martw się! Kawa zaraz dotrze! <SmileOutlined /></p>
+          <p>
+            Nie martw się! Kawa zaraz dotrze! <SmileOutlined />
+          </p>
         </Modal>
       </div>
     );
