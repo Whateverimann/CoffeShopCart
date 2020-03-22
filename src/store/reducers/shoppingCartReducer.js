@@ -101,7 +101,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.CART_RESET:
       return {
         cart: [],
-        cartTotal: '',
+        cartTotal: '0.00',
         products: [
           {
             key: 0,

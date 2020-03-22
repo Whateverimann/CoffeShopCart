@@ -50,7 +50,7 @@ class App extends Component {
   next() {
     if (this.state.current === 0) {
       if (!this.props.cart.length) {
-        return message.warning("Dodaj produkt!!!:)");
+        return message.warning("Dodaj produkt!");
       } else {
         this.props.handleCartTotal();
         const current = this.state.current + 1;
@@ -65,7 +65,7 @@ class App extends Component {
           this.setState({ current });
         })
         .catch(errorInfo => {
-          return message.error("Wypełnij formularz!!!:)");
+          return message.error("Wypełnij formularz!");
         });
     } else {
       const current = this.state.current + 1;

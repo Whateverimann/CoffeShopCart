@@ -1,15 +1,14 @@
 @import "~antd/dist/antd.css";
 
 .form-container {
-  margin-top: 50px;
-  width: 900px;
   padding: 10px;
 }
-
-.ant-steps {
-  /* margin-left: 80px; */
-  margin-bottom: 30px;
+@media (min-width: 576px) {
+  .form-container {
+    margin-top: 50px;
+  }
 }
+
 @media (min-width: 576px) {
   .ant-steps {
     margin: auto;
@@ -26,6 +25,11 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+}
+@media (min-width: 576px) {
+  .steps-content {
+    width: 900px;
+  }
 }
 
 .steps-action {
@@ -85,7 +89,16 @@
   color: #fff;
 }
 
-/* ----------------------------stepper-------------------------- */
+/* ----------------------------steps-------------------------- */
+.ant-steps-item-tail::after {
+  display: none;
+}
+@media (min-width: 576px) {
+  .ant-steps-item-tail::after {
+    display: inline-block;
+  }
+}
+
 .ant-steps-item-title {
   font-size: 14px;
   line-height: 20px;
@@ -141,7 +154,7 @@
   font-weight: 500;
   font-size: 30px;
 }
-.anticon-smile{
+.anticon-smile {
   color: #eb9e66;
 }
 .ant-modal-body {
@@ -154,7 +167,7 @@
   text-align: center;
   border-top: none;
 }
-.ant-modal-footer .previous-button{
-font-size: 16px;
-height: 40px;
+.ant-modal-footer .previous-button {
+  font-size: 16px;
+  height: 40px;
 }

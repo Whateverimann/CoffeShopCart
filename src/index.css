@@ -1,9 +1,8 @@
 @import "~antd/dist/antd.css";
 body {
-  font-family: 'Spartan', sans-serif;
- }
+  font-family: "Spartan", sans-serif;
+}
 #root {
-  height: 100vh;
   display: flex;
   justify-content: center;
-  }
+}

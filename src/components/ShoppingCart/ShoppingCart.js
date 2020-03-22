@@ -60,6 +60,7 @@ class ShoppingCart extends Component {
                 key="price"
               />
               <Column
+              className="delete-column"
                 title=""
                 key="delete"
                 render={record => (
@@ -87,7 +88,7 @@ class ShoppingCart extends Component {
                 Zresetuj koszyk
               </Button>
               <Button
-                className="update-cart-button"
+                className="add-product"
                 onClick={this.props.handleCartTotal}
               >
                 Przelicz wszystko <ReloadOutlined />

@@ -1,19 +1,27 @@
 @import "~antd/dist/antd.css";
 
 /* -------------------------table----------------------- */
-.ant-table-wrapper {
-  min-width: 100%;
-}
-.picture-column {
-  display: flex;
-  min-height: 54px;
+
+@media (min-width: 576px) {
+  .ant-table-wrapper {
+    min-width: 100%;
+  }
+  .delete-column {
+    max-width: 30px;
+  }
+  .picture-column {
+    min-height: 54px;
+    max-width: 45px;
+  }
 }
 
 img {
   height: 50px;
-  margin: auto;
-  padding: 0;
 }
+.ant-table-placeholder {
+  display: none;
+  }
+
 .ant-table-small {
   border: none;
 }
@@ -26,7 +34,6 @@ img {
 .ant-row {
   display: flex;
   flex-grow: 1;
-  width: 100%;
 }
 .buttons-row {
   flex-wrap: wrap;
@@ -60,6 +67,21 @@ tr:hover .ant-table-placeholder:hover {
 }
 
 /* --------------------------buttons---------------------- */
+.handle-products-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 576px) {
+  .handle-products-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+  }
+}
+
 .delete-row-button {
   border: none;
   font-size: 20px;
@@ -78,7 +100,7 @@ tr:hover .ant-table-placeholder:hover {
   align-items: flex-end;
 }
 .add-product {
-  margin: 10px 5px;
+ margin: auto;
   color: #000;
   border-bottom: 4px solid #eb9e66;
   border-top: none;
@@ -87,6 +109,12 @@ tr:hover .ant-table-placeholder:hover {
   border-radius: none;
   font-weight: 500;
 }
+@media (min-width: 576px) {
+  .add-product {
+    margin: 0 10px;
+  }
+}
+
 .add-product:hover,
 .add-product:focus {
   color: #eb9e66;
@@ -98,7 +126,7 @@ tr:hover .ant-table-placeholder:hover {
 }
 
 .reset-products {
-  margin: 10px 5px;
+  margin: auto;
   color: #000;
   border-bottom: 4px solid #ea6861;
   border-top: none;
@@ -106,6 +134,11 @@ tr:hover .ant-table-placeholder:hover {
   border-right: none;
   border-radius: none;
   font-weight: 500;
+}
+@media (min-width: 576px) {
+  .reset-products {
+    margin: 0 10px;
+  }
 }
 .reset-products:hover,
 .reset-products:focus {
@@ -118,7 +151,7 @@ tr:hover .ant-table-placeholder:hover {
 }
 
 .update-cart-button {
-  margin: 10px 5px;
+  margin: auto;
   color: #000;
   border: none;
   font-weight: 500;
