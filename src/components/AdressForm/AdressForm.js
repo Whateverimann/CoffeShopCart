@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Form, Input, Checkbox, Button } from "antd";
+import { Row, Col, Form, Input, Checkbox } from "antd";
 import "./AdressForm.css";
 import { connect } from "react-redux";
 import * as actionTypes from "./../../store/actionTypes";
@@ -7,17 +7,23 @@ import * as actionTypes from "./../../store/actionTypes";
 const InputGroup = Input.Group;
 
 class AdressForm extends Component {
-  formRef = React.createRef();  
+  formRef = React.createRef();
 
   componentDidMount() {
     this.formRef.current.setFieldsValue(this.props.values);
-      }
+    const { addressForm } = this.props;
+    addressForm(this);
+  }
 
+  onSubmit = () => {
+      this.formRef.current.submit();
+  };
 
   render() {
     return (
       <>
         <Form
+          initialValues={this.props.values}
           name="adressForm"
           onFinish={this.props.onFinish}
           ref={this.formRef}
@@ -248,9 +254,6 @@ class AdressForm extends Component {
                 </InputGroup>
               </Form.Item>
             </Col>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
           </Row>
         </Form>
       </>

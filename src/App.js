@@ -5,31 +5,31 @@ import "./App.css";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import AdressForm from "./components/AdressForm/AdressForm";
 import DeliveryPayment from "./components/DeliveryPayment/DeliveryPayment";
-import { Steps, Button, Modal } from "antd";
+import { Steps, Button, Modal, message } from "antd";
 import { ReloadOutlined, SmileOutlined } from "@ant-design/icons";
 
 const { Step } = Steps;
 
-const steps = [
+class App extends Component {
+  state = {
+    current: 0,
+    visible: false
+  };
+
+  steps = [
     {
       title: "Koszyk",
       content: <ShoppingCart />
     },
     {
       title: "Twoje dane",
-      content: <AdressForm />
+      content: <AdressForm addressForm={ref => (this.child = ref)} />
     },
     {
       title: "Dostawa i płatność",
       content: <DeliveryPayment />
     }
   ];
-
-class App extends Component {
-    state = {
-    current: 0,
-    visible: false
-  };
 
   showModal = () => {
     this.setState({
@@ -48,10 +48,29 @@ class App extends Component {
   };
 
   next() {
-    this.props.handleCartTotal();
-
-    const current = this.state.current + 1;
-    this.setState({ current });
+    if (this.state.current === 0) {
+      if (!this.props.cart.length) {
+        return message.warning("Dodaj produkt!!!:)");
+      } else {
+        this.props.handleCartTotal();
+        const current = this.state.current + 1;
+        this.setState({ current });
+      }
+    } else if (this.state.current === 1) {
+      this.child.formRef.current
+        .validateFields()
+        .then(values => {
+          this.props.onFinish(values);
+          const current = this.state.current + 1;
+          this.setState({ current });
+        })
+        .catch(errorInfo => {
+          return message.error("Wypełnij formularz!!!:)");
+        });
+    } else {
+      const current = this.state.current + 1;
+      this.setState({ current });
+    }
   }
 
   prev() {
@@ -61,30 +80,26 @@ class App extends Component {
 
   render() {
     const current = this.state.current;
-    return (            
+    return (
       <div className="form-container">
-        <Steps className="ant-steps-label-vertical"current={current}>
-          {steps.map(item => (
+        <Steps className="ant-steps-label-vertical" current={current}>
+          {this.steps.map(item => (
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
-        <div className="steps-content">{steps[current].content}</div>
+        <div className="steps-content">{this.steps[current].content}</div>
         <div className="steps-action">
-          {current < steps.length - 1 && (
+          {current < this.steps.length - 1 && (
             <Button
               className="next-button"
-              disabled={!this.props.cart.length}
+              // disabled={!this.props.cart.length}
               onClick={() => this.next()}
             >
               Dalej
             </Button>
           )}
-          {current === steps.length - 1 && (
-            <Button
-              className="next-button"
-              disabled={this.state.disabled}
-              onClick={this.showModal}
-            >
+          {current === this.steps.length - 1 && (
+            <Button className="next-button" onClick={this.showModal}>
               Zamów i zapłać!
             </Button>
           )}
@@ -134,7 +149,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleCartTotal: () => dispatch({ type: actionTypes.CART_TOTAL })
+    handleCartTotal: () => dispatch({ type: actionTypes.CART_TOTAL }),
+    onFinish: values =>
+      dispatch({
+        type: actionTypes.ADD_FORM_VALUES,
+        values: values
+      })
   };
 };
 

@@ -28,7 +28,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         invoiceNeeded: action.event.target.checked
       };
-
     case actionTypes.ADD_FORM_VALUES:
       return {
         ...state,
