@@ -11,7 +11,7 @@ I created this app to practise React and Redux. You can add random coffe to cart
 ### Technologies
 
 Project is created with:
-* React ^16.13.0
+* React 16.13.0
 * Redux 4.0.5
 * Ant Design 4.0.3
 
