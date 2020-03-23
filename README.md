@@ -6,7 +6,9 @@ Simple shop cart app created with React, Redux and Ant Design.
 
 ## General Info
 
-I created this app to practise React and Redux. You can add random coffe to cart, fill form and order it :)
+I created this app to practise React and Redux. 
+You can add random coffe to cart then fill form and order it. 
+Have fun :)
 
 ### Technologies
 
