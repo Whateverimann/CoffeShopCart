@@ -1,4 +1,4 @@
-(./image/CoffeShopCart.png)
+![Example screenshot](./image/CoffeShopCart.png)
 
 # CoffeShopCart
 
