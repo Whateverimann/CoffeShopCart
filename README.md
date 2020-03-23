@@ -1,4 +1,4 @@
-![Example screenshot](./image/CoffeShopCart.png)
+![app screenshot](./image/CoffeShopCart.png)
 
 # CoffeShopCart
 
@@ -16,3 +16,7 @@ Redux 4.0.5
 Ant Design 4.0.3
 
 ### Demo
+
+
+
+
