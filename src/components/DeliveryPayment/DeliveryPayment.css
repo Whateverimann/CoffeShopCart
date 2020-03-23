@@ -1,12 +1,24 @@
 .delivery-col {
-  padding: 30px 20px 30px 30px;
+  padding: 20px 10px;
   display: flex;
   flex-direction: column;
 }
 .payment-col{
-  padding: 30px 30px 30px 20px;
+  padding: 20px 10px;
   display: flex;
   flex-direction: column;
+}
+@media (min-width: 576px) {
+  .delivery-col {
+    padding: 30px 20px 30px 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  .payment-col{
+    padding: 30px 30px 30px 20px;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .ant-radio-group {
