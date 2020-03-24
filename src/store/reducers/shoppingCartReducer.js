@@ -7,7 +7,7 @@ import picture5 from "../../images/espressosiciliastyle.jpg";
 
 const initialState = {
   cart: [],
-  cartTotal: '0.00',
+  cartTotal: "0.00",
   products: [
     {
       key: 0,
@@ -69,12 +69,12 @@ const reducer = (state = initialState, action) => {
         if (product.key === action.payload.record.key) {
           product.amount = action.payload.value;
           product.totalPrice = (product.amount * product.price).toFixed(2);
-          product.totalPrice = product.totalPrice * 1;
+          product.totalPrice = (product.totalPrice * 1);
         }
       });
       return {
         ...state,
-        cart: cart 
+        cart: cart
       };
 
     case actionTypes.CART_TOTAL:
@@ -92,6 +92,8 @@ const reducer = (state = initialState, action) => {
       const removedProduct = state.cart.find(
         product => product.key === action.record.key
       );
+      removedProduct.amount = 1;
+      removedProduct.totalPrice = removedProduct.price;
       return {
         ...state,
         cart: state.cart.filter(product => product.key !== removedProduct.key),
@@ -101,7 +103,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.CART_RESET:
       return {
         cart: [],
-        cartTotal: '0.00',
+        cartTotal: "0.00",
         products: [
           {
             key: 0,

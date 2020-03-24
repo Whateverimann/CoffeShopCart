@@ -20,7 +20,7 @@ img {
 }
 .ant-table-placeholder {
   display: none;
-  }
+}
 
 .ant-table-small {
   border: none;
@@ -77,9 +77,15 @@ tr:hover .ant-table-placeholder:hover {
   .handle-products-buttons {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-end;
   }
+}
+
+.ant-btn:active,
+.ant-btn.active {
+  color: #ea6861;
+  border-color: #ea6861;
 }
 
 .delete-row-button {
@@ -100,7 +106,7 @@ tr:hover .ant-table-placeholder:hover {
   align-items: flex-end;
 }
 .add-product {
- margin: auto;
+  margin: auto;
   color: #000;
   border-bottom: 4px solid #eb9e66;
   border-top: none;
@@ -161,4 +167,14 @@ tr:hover .ant-table-placeholder:hover {
 .update-cart-button:focus {
   color: #eb9e66;
   border: none;
+}
+
+[ant-click-animating-without-extra-node="true"]::after,
+.ant-click-animating-node {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-animation: none;
+  animation: none;
 }

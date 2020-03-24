@@ -3,18 +3,29 @@ import { connect } from "react-redux";
 import "./ShoppingCart.css";
 import CartSum from "../CartSum/CartSum";
 import { Row, Col, Table, Button, InputNumber, message } from "antd";
-import { ReloadOutlined, CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined } from "@ant-design/icons";
 import * as actionTypes from "./../../store/actionTypes";
 
 const { Column } = Table;
 
 class ShoppingCart extends Component {
-
   handleAddProduct = () => {
     if (this.props.cart.length < 5) {
       this.props.addProduct();
       this.props.handleCartTotal();
     } else this.handleWarning();
+  };
+
+  handleChangeAmount = (record, value) => {
+    if (value >= 1 && value <= 10) {
+      this.props.changeAmount(record, value);
+      this.props.handleCartTotal();
+    }
+  };
+
+  handleDeleteRow = record => {
+    this.props.deleteRow(record);
+    this.props.handleCartTotal();
   };
 
   handleWarning = () => {
@@ -49,7 +60,7 @@ class ShoppingCart extends Component {
                     min={1}
                     max={10}
                     defaultValue={record.amount}
-                    onChange={value => this.props.changeAmount(record, value)}
+                    onChange={value => this.handleChangeAmount(record, value)}
                   />
                 )}
               />
@@ -60,13 +71,13 @@ class ShoppingCart extends Component {
                 key="price"
               />
               <Column
-              className="delete-column"
+                className="delete-column"
                 title=""
                 key="delete"
                 render={record => (
                   <Button
                     className={"delete-row-button"}
-                    onClick={() => this.props.deleteRow(record)}
+                    onClick={() => this.handleDeleteRow(record)}
                   >
                     <CloseOutlined />
                   </Button>
@@ -87,12 +98,12 @@ class ShoppingCart extends Component {
               >
                 Zresetuj koszyk
               </Button>
-              <Button
+              {/* <Button
                 className="add-product"
                 onClick={this.props.handleCartTotal}
               >
                 Przelicz wszystko <ReloadOutlined />
-              </Button>
+              </Button> */}
             </div>
           </Col>
           <Col xs={24} md={8}>
