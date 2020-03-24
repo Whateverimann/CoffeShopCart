@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cb69b0f00d5af9c8b3afda817155a8bf",
+    "revision": "42e55841337a499e4f3275a2803e16d3",
     "url": "/CoffeShopCart/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CoffeShopCart/static/css/2.4b6e3ef2.chunk.css"
   },
   {
-    "revision": "a7f011b13dea18384549",
-    "url": "/CoffeShopCart/static/css/main.47a6cdd5.chunk.css"
+    "revision": "0668b1079a9aae009d9c",
+    "url": "/CoffeShopCart/static/css/main.30806bb7.chunk.css"
   },
   {
     "revision": "8f42dadabbc5a2cf4a47",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CoffeShopCart/static/js/2.76c1748a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a7f011b13dea18384549",
-    "url": "/CoffeShopCart/static/js/main.7e27e17a.chunk.js"
+    "revision": "0668b1079a9aae009d9c",
+    "url": "/CoffeShopCart/static/js/main.8a392e1b.chunk.js"
   },
   {
     "revision": "9e0ce8a7000503451829",
