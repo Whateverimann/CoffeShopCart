@@ -19,7 +19,7 @@ Project is created with:
 
 ### Demo
 
-Here is a working live demo : https://whateverimann.github.io/CoffeShopCart/
+Here is a working live demo : https://whateverimann.github.io/CoffeeShopCart/
 
 
 
