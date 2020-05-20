@@ -1,13 +1,13 @@
 ![app screenshot](./image/CoffeShopCart.png)
 
-# CoffeShopCart
+# CoffeeShopCart
 
 Simple shop cart app created with React, Redux and Ant Design. 
 
 ## General Info
 
 I created this app to practise React and Redux. 
-You can add random coffe to cart then fill form and order it. 
+You can add random coffee to cart then fill form and order it. 
 Have fun :)
 
 ### Technologies
@@ -19,7 +19,7 @@ Project is created with:
 
 ### Demo
 
-Here is a working live demo : https://whateverimann.github.io/CoffeShopCart/
+Here is a working live demo : https://whateverimann.github.io/CoffeeShopCart/
 
 
 
